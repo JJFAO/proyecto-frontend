@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
+import Register from './components/Register';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
       <Header setScreen={setScreen} />
       {screen === 'Home' && <div>Home</div>}
       {screen === 'Login' && <div>Login</div>}
-      {screen === 'Register' && <div>Registro</div>}
+      {screen === 'Register' && <Register />}
     </div>
   );
 }
