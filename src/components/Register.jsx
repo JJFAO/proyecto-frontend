@@ -7,7 +7,7 @@ export default function Register() {
   const [validated, setValidated] = useState(false);
   const [input, setInput] = useState({  })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     setValidated(true);
@@ -15,9 +15,12 @@ export default function Register() {
       return event.stopPropagation();
     }
     console.log(input)
-
-    const resp = axios.post('http://localhost:4000/api/usuarios', input);
-    console.log(resp)
+    try {
+      const { data } = await axios.post('http://localhost:4000/api/usuarios', input);
+      localStorage.setItem('token', data)
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -57,6 +60,7 @@ export default function Register() {
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
+              minlength='6'
               name="password"
               onChange={ (e) => handleChange(e) }
               type="password"
@@ -65,7 +69,7 @@ export default function Register() {
               required
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              Password is required and the length should be 6 at least!
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>

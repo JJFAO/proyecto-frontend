@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Register from './components/Register';
+import Login from './components/Login';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <div className="App">
       <Header setScreen={setScreen} />
       {screen === 'Home' && <div>Home</div>}
-      {screen === 'Login' && <div>Login</div>}
+      {screen === 'Login' && <Login setScreen={setScreen} />}
       {screen === 'Register' && <Register />}
     </div>
   );
