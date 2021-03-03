@@ -1,20 +1,30 @@
+import axios from "axios";
 import { useState } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
 export default function Register() {
 
   const [validated, setValidated] = useState(false);
+  const [input, setInput] = useState({  })
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
+    event.preventDefault();
     setValidated(true);
+    if (form.checkValidity() === false) {
+      return event.stopPropagation();
+    }
+    console.log(input)
+
+    const resp = axios.post('http://localhost:4000/api/usuarios', input);
+    console.log(resp)
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const changedInput = { ...input, [name]: value };
+    setInput(changedInput);
+  }
 
   return (
     <div className='container mt-5'>
@@ -24,20 +34,22 @@ export default function Register() {
         <Form.Group controlId="validationCustom01">
           <Form.Label>Nombre</Form.Label>
           <Form.Control
+            name="nombre"
+            onChange={ (e) => handleChange(e) }
             required
             type="text"
             placeholder="First name"
-            defaultValue="Mark"
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="validationCustom02">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            name="email"
+            onChange={ (e) => handleChange(e) }
             required
             type="text"
             placeholder="Last name"
-            defaultValue="Otto"
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -45,6 +57,8 @@ export default function Register() {
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
+              name="password"
+              onChange={ (e) => handleChange(e) }
               type="password"
               placeholder="****"
               aria-describedby="inputGroupPrepend"
