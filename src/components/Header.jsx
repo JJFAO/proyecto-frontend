@@ -1,7 +1,28 @@
+import axios from 'axios';
+import { useEffect } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 
 
 export default function Header({setScreen}) {
+
+  const token = localStorage.getItem('token');
+  
+
+  useEffect(() => {
+    getApi();
+  }, [])
+
+  const getApi = async () => {
+    try {
+      const headers = {'x-auth-token': token}
+      const { data } = await axios.get('http://localhost:4000/api/usuarios/usuarioLogueado', { headers });
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+
   return (
 
         <Navbar bg="dark" variant="dark">
