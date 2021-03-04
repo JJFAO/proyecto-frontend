@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, Button } from 'react-bootstrap';
 
 
 export default function Header({ setScreen, token }) {
@@ -21,6 +21,11 @@ export default function Header({ setScreen, token }) {
     }
   }
 
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    window.location.reload()
+    
+  }
 
   return (
 
@@ -31,6 +36,7 @@ export default function Header({ setScreen, token }) {
         {!token && <Nav.Link onClick={() => setScreen('Register')}>Registro</Nav.Link>}
         {!token && <Nav.Link onClick={() => setScreen('Login')}>Login</Nav.Link>}
         <Nav.Link className="ml-auto">{user.nombre}</Nav.Link>
+        {token && <Button onClick={handleLogOut} variant="outline-danger">Cerrar sesion</Button>}
       </Nav>
     </Navbar>
 
