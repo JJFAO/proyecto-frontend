@@ -2,10 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
-export default function Register() {
-
+export default function Register({ setScreen, setToken }) {
   const [validated, setValidated] = useState(false);
-  const [input, setInput] = useState({  })
+  const [input, setInput] = useState({});
 
   const handleSubmit = async (event) => {
     const form = event.currentTarget;
@@ -14,10 +13,11 @@ export default function Register() {
     if (form.checkValidity() === false) {
       return event.stopPropagation();
     }
-    console.log(input)
     try {
       const { data } = await axios.post('http://localhost:4000/api/usuarios', input);
-      localStorage.setItem('token', data)
+      localStorage.setItem('token', data);
+      setToken(data);
+      setScreen('Home');
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +38,7 @@ export default function Register() {
           <Form.Label>Nombre</Form.Label>
           <Form.Control
             name="nombre"
-            onChange={ (e) => handleChange(e) }
+            onChange={(e) => handleChange(e)}
             required
             type="text"
             placeholder="First name"
@@ -49,7 +49,7 @@ export default function Register() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             name="email"
-            onChange={ (e) => handleChange(e) }
+            onChange={(e) => handleChange(e)}
             required
             type="text"
             placeholder="Last name"
@@ -60,9 +60,9 @@ export default function Register() {
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
-              minlength='6'
+              minLength='6'
               name="password"
-              onChange={ (e) => handleChange(e) }
+              onChange={(e) => handleChange(e)}
               type="password"
               placeholder="****"
               aria-describedby="inputGroupPrepend"
@@ -73,8 +73,8 @@ export default function Register() {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
-      <Button type="submit">Enviar</Button>
-    </Form>
+        <Button type="submit">Enviar</Button>
+      </Form>
 
 
 

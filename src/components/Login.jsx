@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
-function Login({setScreen}) {
+function Login({ setScreen, setToken }) {
     const [validated, setValidated] = useState(false);
-    const [input, setInput] = useState({})
+    const [input, setInput] = useState({});
 
     const handleSubmit = async (event) => {
         const form = event.currentTarget;
@@ -13,11 +13,11 @@ function Login({setScreen}) {
         if (form.checkValidity() === false) {
             return event.stopPropagation();
         }
-        console.log(input)
         try {
             const { data } = await axios.post('http://localhost:4000/api/auth/login', input);
-            localStorage.setItem('token', data)
-            setScreen('Home')
+            localStorage.setItem('token', data);
+            setToken(data);
+            setScreen('Home');
         } catch (error) {
             console.log(error);
         }
@@ -51,7 +51,7 @@ function Login({setScreen}) {
                     <Form.Label>Password</Form.Label>
                     <InputGroup hasValidation>
                         <Form.Control
-                            minlength='6'
+                            minLength='6'
                             name="password"
                             onChange={(e) => handleChange(e)}
                             type="password"

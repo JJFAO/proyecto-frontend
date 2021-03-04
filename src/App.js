@@ -8,12 +8,14 @@ import Login from './components/Login';
 
 function App() {
   const [screen, setScreen] = useState('Home');
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
   return (
     <div className="App">
-      <Header setScreen={setScreen} />
+      <Header token={token} setScreen={setScreen} />
       {screen === 'Home' && <div>Home</div>}
-      {screen === 'Login' && <Login setScreen={setScreen} />}
-      {screen === 'Register' && <Register />}
+      {screen === 'Login' && <Login setScreen={setScreen} setToken={setToken} />}
+      {screen === 'Register' && <Register setScreen={setScreen} setToken={setToken} />}
     </div>
   );
 }
