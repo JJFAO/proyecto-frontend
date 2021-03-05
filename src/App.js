@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header';
+import Home from './pages/Home';
 import Register from './components/Register';
 import Login from './components/Login';
 
@@ -23,6 +23,9 @@ function App() {
                     </Route>
                     <Route path="/register">
                         <Register />
+                    </Route>
+                    <Route path="/">
+                        <Home token={token} />
                     </Route>
                 </Switch>
             </Router>
