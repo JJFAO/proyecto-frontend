@@ -7,7 +7,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 
 function App() {
-    const [screen, setScreen] = useState('Home');
+    // const [screen, setScreen] = useState('Home');
     const [token, setToken] = useState(localStorage.getItem('token'));
 
     return (
@@ -19,10 +19,10 @@ function App() {
             <Router>
                 <Switch>
                     <Route path="/login">
-                        <Login />
+                        <Login setToken={setToken} />
                     </Route>
                     <Route path="/register">
-                        <Register />
+                        <Register setToken={setToken} />
                     </Route>
                     <Route path="/">
                         <Home token={token} />

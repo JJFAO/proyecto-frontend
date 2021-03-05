@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Form, InputGroup, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-function Login({ setScreen, setToken }) {
+function Login({ setToken }) {
     const [validated, setValidated] = useState(false);
     const [input, setInput] = useState({});
 
@@ -17,7 +18,7 @@ function Login({ setScreen, setToken }) {
             const { data } = await axios.post('http://localhost:4000/api/auth/login', input);
             localStorage.setItem('token', data);
             setToken(data);
-            setScreen('Home');
+            window.location.replace('/');
         } catch (error) {
             console.log(error);
         }
@@ -68,9 +69,14 @@ function Login({ setScreen, setToken }) {
                                     </InputGroup>
                                 </Form.Group>
                                 <Row>
-                                    <Button type="submit" className="ml-auto mr-3">
+                                    <Button type="submit" className="mx-auto">
                                         Iniciar Sesión
                                     </Button>
+                                </Row>
+                                <Row>
+                                    <Link className="mx-auto mt-2" to="/register">
+                                        ¿No tiene una cuenta? Cree una aquí
+                                    </Link>
                                 </Row>
                             </Form>
                         </Card.Body>

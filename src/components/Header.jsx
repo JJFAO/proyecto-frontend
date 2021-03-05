@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 
-export default function Header({ setScreen, token }) {
+export default function Header({ token }) {
     const [user, setUser] = useState({});
     useEffect(() => {
         if (token) {
@@ -31,9 +31,9 @@ export default function Header({ setScreen, token }) {
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">MeMes</Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link onClick={() => setScreen('Home')}>Home</Nav.Link>
-                {!token && <Nav.Link onClick={() => setScreen('Register')}>Registro</Nav.Link>}
-                {!token && <Nav.Link onClick={() => setScreen('Login')}>Login</Nav.Link>}
+                <Nav.Link>Home</Nav.Link>
+                {/* {!token && <Nav.Link onClick={() => setScreen('Register')}>Registro</Nav.Link>}
+                {!token && <Nav.Link onClick={() => setScreen('Login')}>Login</Nav.Link>} */}
             </Nav>
             <p className="text-white text-uppercase font-weight-bold m-2 px-2">{user.nombre}</p>
             {token && (
