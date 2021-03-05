@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Form, InputGroup, Button } from 'react-bootstrap';
+import { Form, InputGroup, Button, Container, Row, Col, Card } from 'react-bootstrap';
 
 export default function Register({ setScreen, setToken }) {
     const [validated, setValidated] = useState(false);
@@ -30,57 +30,64 @@ export default function Register({ setScreen, setToken }) {
     };
 
     return (
-        <div className="container mt-5">
-            <h1>Formulario de Registro</h1>
-
-            <Form
-                noValidate
-                validated={validated}
-                onSubmit={handleSubmit}
-                className="card p-5 mt-5"
-                style={{ maxWidth: '400px' }}
-            >
-                <Form.Group controlId="validationCustom01">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control
-                        name="nombre"
-                        onChange={(e) => handleChange(e)}
-                        required
-                        type="text"
-                        placeholder="First name"
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="validationCustom02">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        name="email"
-                        onChange={(e) => handleChange(e)}
-                        required
-                        type="text"
-                        placeholder="Last name"
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="validationCustomUsername">
-                    <Form.Label>Password</Form.Label>
-                    <InputGroup hasValidation>
-                        <Form.Control
-                            minLength="6"
-                            name="password"
-                            onChange={(e) => handleChange(e)}
-                            type="password"
-                            placeholder="****"
-                            aria-describedby="inputGroupPrepend"
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Password is required and the length should be 6 at least!
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                </Form.Group>
-                <Button type="submit">Enviar</Button>
-            </Form>
-        </div>
+        <Container>
+            <Row>
+                <Col xs={12} sm={8} md={6} className="mx-auto my-5">
+                    <Card className="border">
+                        <Card.Header className="bg-info">
+                            <h4 className="text-white">MeMes</h4>
+                        </Card.Header>
+                        <Card.Body>
+                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                <Form.Group controlId="validationCustom01">
+                                    <Form.Label>Nombre</Form.Label>
+                                    <Form.Control
+                                        name="nombre"
+                                        onChange={(e) => handleChange(e)}
+                                        required
+                                        type="text"
+                                        placeholder="First name"
+                                    />
+                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group controlId="validationCustom02">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control
+                                        name="email"
+                                        onChange={(e) => handleChange(e)}
+                                        required
+                                        type="text"
+                                        placeholder="Last name"
+                                    />
+                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group controlId="validationCustomUsername">
+                                    <Form.Label>Password</Form.Label>
+                                    <InputGroup hasValidation>
+                                        <Form.Control
+                                            minLength="6"
+                                            name="password"
+                                            onChange={(e) => handleChange(e)}
+                                            type="password"
+                                            placeholder="****"
+                                            aria-describedby="inputGroupPrepend"
+                                            required
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Password is required and the length should be 6 at least!
+                                        </Form.Control.Feedback>
+                                    </InputGroup>
+                                </Form.Group>
+                                <Row>
+                                    <Button type="submit" className="ml-auto mr-3">
+                                        Registrarme
+                                    </Button>
+                                </Row>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 }
