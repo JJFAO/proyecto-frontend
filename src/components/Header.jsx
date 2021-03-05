@@ -29,18 +29,18 @@ export default function Header({ setScreen, token }) {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Navbar.Brand href="#home">MeMes</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link onClick={() => setScreen('Home')}>Home</Nav.Link>
                 {!token && <Nav.Link onClick={() => setScreen('Register')}>Registro</Nav.Link>}
                 {!token && <Nav.Link onClick={() => setScreen('Login')}>Login</Nav.Link>}
-                <Nav.Link className="ml-auto">{user.nombre}</Nav.Link>
-                {token && (
-                    <Button onClick={handleLogOut} variant="outline-danger">
-                        Cerrar sesion
-                    </Button>
-                )}
             </Nav>
+            <p className="text-white text-uppercase font-weight-bold m-2 px-2">{user.nombre}</p>
+            {token && (
+                <Button onClick={handleLogOut} size="sm" variant="outline-danger">
+                    Cerrar sesion
+                </Button>
+            )}
         </Navbar>
     );
 }
