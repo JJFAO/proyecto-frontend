@@ -38,7 +38,7 @@ export default function Header({ setScreen, token }) {
             <p className="text-white text-uppercase font-weight-bold m-2 px-2">{user.nombre}</p>
             {token && (
                 <Button onClick={handleLogOut} size="sm" variant="outline-danger">
-                    Cerrar sesion
+                    Cerrar sesión
                 </Button>
             )}
         </Navbar>
