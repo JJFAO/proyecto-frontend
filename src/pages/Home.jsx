@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap';
 import Header from '../components/Header';
+import Memes from '../components/Memes';
 // import { Redirect } from 'react-router-dom';
 
 export default function Home({ token }) {
@@ -10,7 +11,7 @@ export default function Home({ token }) {
         <>
             <Header token={token} />
             <Container>
-                <h1>Home</h1>
+                <Memes />
             </Container>
         </>
     );
