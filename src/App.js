@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './components/Register';
 import Login from './components/Login';
+import FormMeme from './pages/FormMeme';
 
 function App() {
     // const [screen, setScreen] = useState('Home');
@@ -18,6 +19,9 @@ function App() {
             {screen === 'Register' && <Register setScreen={setScreen} setToken={setToken} />} */}
             <Router>
                 <Switch>
+                    <Route path="/formMeme">
+                        <FormMeme token={token} />
+                    </Route>
                     <Route path="/login">
                         <Login setToken={setToken} />
                     </Route>
