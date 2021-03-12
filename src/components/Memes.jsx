@@ -11,9 +11,12 @@ export default function Memes() {
         };
         getMemes();
     }, []);
-    return <div>{memes.map((m) => 
-      <Meme
-        meme={m}
-      />
-      )}</div>;
+
+    return (
+        <div>
+            {memes.map((m) => (
+                <Meme meme={m} key={m._id} />
+            ))}
+        </div>
+    );
 }
