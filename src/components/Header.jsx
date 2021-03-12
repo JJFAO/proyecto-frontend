@@ -30,7 +30,7 @@ export default function Header({ token }) {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">MeMes</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">MeMes</Navbar.Brand>
             <Nav className="mr-auto"></Nav>
             {!token && (
                 <Link to="/login">
@@ -44,9 +44,14 @@ export default function Header({ token }) {
             )}
             <p className="text-white text-uppercase font-weight-bold m-2 px-2">{user.nombre}</p>
             {token && (
-                <Button onClick={handleLogOut} size="sm" variant="outline-danger">
-                    Cerrar sesión
-                </Button>
+                <>
+                    <Button as={Link} to="/formMeme" size="sm" variant="outline-danger">
+                        Crear Meme
+                    </Button>
+                    <Button onClick={handleLogOut} size="sm" variant="outline-danger">
+                        Cerrar sesión
+                    </Button>
+                </>
             )}
         </Navbar>
     );
