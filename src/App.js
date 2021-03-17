@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Register from './components/Register';
 import Login from './components/Login';
 import FormMeme from './pages/FormMeme';
+import Profile from './pages/Profile';
 
 function App() {
     // const [screen, setScreen] = useState('Home');
@@ -19,6 +20,9 @@ function App() {
             {screen === 'Register' && <Register setScreen={setScreen} setToken={setToken} />} */}
             <Router>
                 <Switch>
+                    <Route path="/profile">
+                        <Profile token={token} />
+                    </Route>
                     <Route path="/formMeme">
                         <FormMeme token={token} />
                     </Route>
