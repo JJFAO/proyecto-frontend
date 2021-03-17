@@ -1,12 +1,10 @@
-import axios from "axios";
-import { useState } from "react";
-import { Form, InputGroup, Row, Button} from "react-bootstrap";
-import Header from "../components/Header";
+import axios from 'axios';
+import { useState } from 'react';
+import { Form, InputGroup, Row, Button } from 'react-bootstrap';
 
-export default function FormMeme({ token, user }) {
+export default function FormUser({ token }) {
     const [validated, setValidated] = useState(false);
     const [input, setInput] = useState({});
-    
 
     const handleSubmit = async (event) => {
         const form = event.currentTarget;
@@ -19,7 +17,6 @@ export default function FormMeme({ token, user }) {
             const headers = { 'x-auth-token': token };
             await axios.post('http://localhost:4000/api/memes', input, { headers });
             alert('Meme creado con éxito!😁');
-
         } catch (error) {
             console.log(error);
         }
@@ -30,11 +27,17 @@ export default function FormMeme({ token, user }) {
         const changedInput = { ...input, [name]: value };
         setInput(changedInput);
     };
+
     return (
         <>
-            <Header token={token} user={user} />
             <h2 className="mt-5">Formulario Crear Meme</h2>
-            <Form noValidate validated={validated} onSubmit={handleSubmit} className="card mt-5 p-5 mx-auto" style={{width: '500px'}}>
+            <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                className="card mt-5 p-5 mx-auto"
+                style={{ width: '500px' }}
+            >
                 <Form.Group controlId="validationCustom02">
                     <Form.Label>Titulo</Form.Label>
                     <Form.Control

@@ -3,25 +3,7 @@ import { useEffect, useState } from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function Header({ token }) {
-    const [user, setUser] = useState({});
-    useEffect(() => {
-        if (token) {
-            getApi();
-        }
-    }, [token]);
-
-    const getApi = async () => {
-        try {
-            const headers = { 'x-auth-token': token };
-            const { data } = await axios.get('http://localhost:4000/api/usuarios/usuarioLogueado', {
-                headers,
-            });
-            setUser(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+export default function Header({ token, user }) {
 
     const handleLogOut = () => {
         localStorage.removeItem('token');

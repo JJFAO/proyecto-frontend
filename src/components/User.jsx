@@ -1,45 +1,35 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { beforeUpload, getBase64 } from '../utils';
+import FormUser from './FormUser';
 
-export default function UserHome() {
+const exampleImage = 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'
+
+export default function User({ token, user }) {
+    const [image, setImage] = useState(exampleImage);
+    
     const onChangeImg = async (e) => {
         const img = e.target.files[0];
-        beforeUpload(img);
+        if (!beforeUpload(img)) return;
         const base64 = await getBase64(img);
-        axios
-            .put(
-                // `http://localhost:4000/api/usuarios/${_id}`,
-                { img: base64 },
-                {
-                    // headers: { 'x-auth-token': token },
-                }
-            )
-            .then((response) => console.log(response.data));
+        setImage(base64);
+    //     axios
+    //         .put(
+    //             `http://localhost:4000/api/usuarios/usuarioLogueado`,
+    //             { img: base64 },
+    //             {
+    //                 headers: { 'x-auth-token': token },
+    //             }
+    //         )
+    //         .then((response) => console.log(response.data));
     };
-    function getBase64(img) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.addEventListener('load', () => resolve(reader.result));
-            reader.readAsDataURL(img);
-        });
-    }
-    function beforeUpload(file) {
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-            alert('Solamente archivos JPG/PNG!');
-        }
-        const isLt2M = file.size / 1024 / 1024 < 3;
-        if (!isLt2M) {
-            alert('La imagen debe ser menor a 3MB!');
-        }
-        return isJpgOrPng && isLt2M;
-    }
 
     return (
         <div className="text-center bg-white p-2 my-5">
             <div className="d-flex justify-content-center align-items-end ml-4 m-2">
                 <img
-                    src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"
+                    src={image}
                     alt="profile"
                     width="200"
                     className="rounded-circle"
@@ -52,8 +42,10 @@ export default function UserHome() {
                         width="20"
                     />
                 </label>
-                <input id="file-input" className="d-none" type="file" onChange={onChangeImg} />
+                <input id="file-input" className="d-none" accept="image/png, image/jpeg" type="file" onChange={onChangeImg} />
             </div>
+            <p>Nombre: {user.nombre}</p>
+            <FormUser token={token} />
         </div>
     );
 }
