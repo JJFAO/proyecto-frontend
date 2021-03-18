@@ -15,8 +15,8 @@ export default function FormUser({ token }) {
         }
         try {
             const headers = { 'x-auth-token': token };
-            await axios.post('http://localhost:4000/api/memes', input, { headers });
-            alert('Meme creado con éxito!😁');
+            await axios.put('http://localhost:4000/api/usuarios/usuarioLogueado', input, { headers });
+            alert('Datos actualizados con éxito!😁');
         } catch (error) {
             console.log(error);
         }
@@ -30,7 +30,7 @@ export default function FormUser({ token }) {
 
     return (
         <>
-            <h2 className="mt-5">Formulario Crear Meme</h2>
+            <h2 className="mt-5">Editar datos</h2>
             <Form
                 noValidate
                 validated={validated}
@@ -39,13 +39,13 @@ export default function FormUser({ token }) {
                 style={{ width: '500px' }}
             >
                 <Form.Group controlId="validationCustom02">
-                    <Form.Label>Titulo</Form.Label>
+                    <Form.Label>Nombre</Form.Label>
                     <Form.Control
-                        name="titulo"
+                        name="nombre"
                         onChange={(e) => handleChange(e)}
                         required
                         type="text"
-                        placeholder="Meme"
+                        placeholder="rick.."
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
@@ -56,7 +56,7 @@ export default function FormUser({ token }) {
                             name="imagen"
                             onChange={(e) => handleChange(e)}
                             type="text"
-                            placeholder="http://meme.jpg"
+                            placeholder="http://imagen.jpg"
                             aria-describedby="inputGroupPrepend"
                             required
                         />
@@ -64,8 +64,8 @@ export default function FormUser({ token }) {
                     </InputGroup>
                 </Form.Group>
                 <Row>
-                    <Button type="submit" className="mx-auto">
-                        Crear Meme
+                    <Button variant="info" type="submit" className="mx-auto">
+                        Actualizar datos
                     </Button>
                 </Row>
             </Form>
