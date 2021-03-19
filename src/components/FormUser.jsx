@@ -43,22 +43,20 @@ export default function FormUser({ token }) {
                     <Form.Control
                         name="nombre"
                         onChange={(e) => handleChange(e)}
-                        required
                         type="text"
                         placeholder="rick.."
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId="validationCustomUsername">
-                    <Form.Label>Imagen</Form.Label>
+                    <Form.Label>Contraseña</Form.Label>
                     <InputGroup hasValidation>
                         <Form.Control
-                            name="imagen"
+                            name="password"
                             onChange={(e) => handleChange(e)}
-                            type="text"
-                            placeholder="http://imagen.jpg"
+                            type="password"
+                            placeholder="contraseña.."
                             aria-describedby="inputGroupPrepend"
-                            required
                         />
                         <Form.Control.Feedback type="invalid">Image is required!</Form.Control.Feedback>
                     </InputGroup>

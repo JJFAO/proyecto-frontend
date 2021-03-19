@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function Header({ token, user }) {
+    const history = useHistory();
+
     const handleLogOut = () => {
         localStorage.removeItem('token');
+        history.push('/');
         window.location.reload();
     };
 
