@@ -3,8 +3,8 @@ export default function Meme({ meme }) {
     const fecha = new Date(createdAt).toLocaleString();
 
     return (
-        <div className="m-auto">
-            <div className="p-2 my-3" style={{ width: '30rem' }}>
+        <div className="">
+            <div className="p-2 my-3">
                 <div style={{ fontSize: '0.7rem' }}>by {creador.nombre}</div>
                 <h3>{titulo}</h3>
                 <img src={imagen} alt="meme" className="img-fluid" />
